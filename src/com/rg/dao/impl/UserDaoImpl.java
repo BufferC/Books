@@ -1,17 +1,13 @@
 package com.rg.dao.impl;
 
 import com.rg.dao.UserDao;
-import com.rg.entity.Cart;
 import com.rg.entity.User;
 import com.rg.utils.JdbcUtils;
-import com.rg.vo.CartVO;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     @Override

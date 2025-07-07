@@ -28,7 +28,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<OrderVO> getOrderVOs(int uid) {
-        String sql = "select oid, book.bid, onum, otime, bprice, bname, (bprice * onum) as total_bprice, bimg from bookorder inner join book on book.bid = bookorder.bid where uid = ?";
+        String sql = "select oid, book.bid, onum, otime, bprice, bname, (bprice * onum) as total_bprice, bimg from bookorder inner join book on book.bid = bookorder.bid where uid = ? order by otime desc";
 
         try {
             return runner.query(connection, sql, new BeanListHandler<>(OrderVO.class), uid);
