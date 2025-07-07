@@ -18,11 +18,18 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
 
         String uri = request.getRequestURI();
 
-        if (uri.startsWith(request.getContextPath() + "/images/") || uri.startsWith(request.getContextPath() + "/css") || uri.endsWith("/login.jsp") || uri.endsWith("/login") || uri.endsWith("/relogin.jsp") || uri.endsWith("/register") || uri.endsWith("/register.jsp") || uri.endsWith("/register_success.jsp")) {// 判断请求URI是否以指定登录路径结尾
+        if (uri.startsWith(request.getContextPath() + "/images/")
+                || uri.startsWith(request.getContextPath() + "/css")
+                || uri.endsWith("/login.jsp")
+                || uri.endsWith("/login")
+                || uri.endsWith("/relogin.jsp")
+                || uri.endsWith("/register")
+                || uri.endsWith("/register.jsp")
+                || uri.endsWith("/register_success.jsp")) {// 判断请求URI是否以指定登录路径结尾
             filterChain.doFilter(request, response);// 放行
         } else if (session == null) {// 如果session为空，说明没有登录，跳转至登录页面
             response.sendRedirect("relogin.jsp");
