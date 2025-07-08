@@ -79,7 +79,13 @@
 </script>
 <script>
     function updateCart(cid, item, cnum, bid) {
-        location.href = "updateCart?id=" + cid + "&item=" + item + "&cnum=" + cnum + "&bid=" + bid;
+        if (item == -1 && cnum == 1) {
+            if (confirm('您确定要删除这条购物车记录吗？')) {
+                location.href = "updateCart?id=" + cid + "&item=" + item + "&cnum=" + cnum + "&bid=" + bid;
+            }
+        } else {
+            location.href = "updateCart?id=" + cid + "&item=" + item + "&cnum=" + cnum + "&bid=" + bid;
+        }
     }
 </script>
 </html>

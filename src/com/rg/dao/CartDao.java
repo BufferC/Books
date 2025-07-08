@@ -19,4 +19,6 @@ public interface CartDao {
     List<CartVO> getAllCartVO(int uid);
 
     int clear(int uid);
+
+    int delete(int cid);
 }

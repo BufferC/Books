@@ -97,4 +97,15 @@ public class CartDaoImpl implements CartDao {
         }
         return 0;
     }
+
+    @Override
+    public int delete(int cid) {
+        String sql = "delete from cart where cid = ?";
+        try {
+            return runner.update(connection, sql, cid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

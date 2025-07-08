@@ -26,14 +26,17 @@ public class UpdateCartServlet extends HttpServlet {
         BookDao bookDao = new BookDaoImpl();
         Book book = bookDao.getById(bid);
 
-        if (book.getBstock() - item <= 0) {
+        if (cnum + item == 0) {
+            cartDao.delete(cid);
+            bookDao.incr(bid);
+        } else if (book.getBstock() - item <= 0) {
             req.setAttribute("message", "库存有限，无法再添加！");
         } else {
             cartDao.update(cid, item + cnum);
             if (item > 0) {
-                bookDao.decr(item);
+                bookDao.decr(bid);
             } else {
-                bookDao.incr(item);
+                bookDao.incr(bid);
             }
         }
 
