@@ -8,7 +8,7 @@ public class CartVO {
     private String bname;
     private BigDecimal bprice;
     private int cnum;
-    private double total_bprice;
+    private BigDecimal total_bprice;
     private String bimg;
 
     public CartVO() {
@@ -63,11 +63,11 @@ public class CartVO {
         this.cnum = cnum;
     }
 
-    public double getTotal_bprice() {
+    public BigDecimal getTotal_bprice() {
         return total_bprice;
     }
 
-    public void setTotal_bprice(double total_bprice) {
+    public void setTotal_bprice(BigDecimal total_bprice) {
         this.total_bprice = total_bprice;
     }
 

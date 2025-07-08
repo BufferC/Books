@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class CartDaoImpl implements CartDao {
         String sql = "select cart.cid, cart.bid, cart.cnum, bname, bimg, bprice from cart inner join book on cart.bid = book.bid where cid = ?";
         try {
             CartVO cartVO = runner.query(connection, sql, new BeanHandler<>(CartVO.class), cid);
-            cartVO.setTotal_bprice(cartVO.getCnum() * cartVO.getBprice().doubleValue());
+            cartVO.setTotal_bprice(cartVO.getBprice().multiply(new BigDecimal(cartVO.getCnum())));
             return cartVO;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -2,7 +2,6 @@ package com.rg.servlet;
 
 import com.rg.dao.CartDao;
 import com.rg.dao.impl.CartDaoImpl;
-import com.rg.entity.Cart;
 import com.rg.entity.User;
 import com.rg.vo.CartVO;
 
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @WebServlet("/getCart")
@@ -24,9 +24,9 @@ public class GetCartServlet extends HttpServlet {
 
         List<CartVO> cartVOs = cartDao.getAllCartVO(user.getUid());
 
-        double sum = 0;
+        BigDecimal sum = new BigDecimal(0);
         for (CartVO cartVO : cartVOs) {
-            sum += cartVO.getTotal_bprice();
+            sum = sum.add(cartVO.getTotal_bprice());
         }
 
         req.setAttribute("sum", sum);
